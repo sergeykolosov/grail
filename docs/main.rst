@@ -123,15 +123,15 @@ Example:
 
       @step
       def first_implemented_step(self):
-          print 'Some implemented actions'
+          print('Some implemented actions')
 
       @step(pending=True)
       def second_pending_step(self):
-          print 'This is not final implementation'
+          print('This is not final implementation')
 
       @step
       def some_third_step(self):
-          print 'This step is implemented but will be Ignored and you will not see this message'
+          print('This step is implemented but will be Ignored and you will not see this message')
 
 Test execution output:
 
@@ -211,9 +211,9 @@ In this case ``description.format(*args, **kwargs)`` will be used as step descri
 
       @step(description='Some info: {0}, another info: {kwarg_to_format}', format_description=True)
       def some_tricky_formatting(self, arg_to_format, kwarg_to_format, skip_this):
-          print arg_to_format
-          print kwarg_to_format
-          print skip_this
+          print(arg_to_format)
+          print(kwarg_to_format)
+          print(skip_this)
 
 Output will be like this:
 
@@ -348,8 +348,8 @@ This test output could be used as manual test case. E.g. you can store it in you
 
       @step
       def one_more_step(self, step_input):
-          print 'You will not see next line print'
-          print step_input
+          print('You will not see next line print')
+          print(step_input)
 
       @step(description='Some step that will be implemented')
       def pending_step(self):

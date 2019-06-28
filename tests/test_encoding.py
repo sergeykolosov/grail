@@ -1,4 +1,6 @@
 # coding=utf-8
+from __future__ import print_function
+
 from unittest import TestCase
 from nose.tools import eq_
 from grail import step, BaseTest
@@ -16,7 +18,7 @@ class TestEncoding(TestCase):
 
     @step
     def verify_step(self, korean_text, russian_text):
-        print korean_text, russian_text
+        print(korean_text, russian_text)
 
     class TestObjectFailed(BaseTest):
         to_raise = Exception(korean_string)

@@ -3,7 +3,7 @@ from nose.tools import ok_
 
 def validate_method_output(method, expected_output, args=(), kwargs={}):
     import sys
-    from StringIO import StringIO
+    from six import StringIO
 
     saved_stdout = sys.stdout
     out = StringIO()
@@ -16,7 +16,7 @@ def validate_method_output(method, expected_output, args=(), kwargs={}):
 
     try:
         method(*args, **kwargs)
-    except:
+    except Exception:
         verify_output()
         raise
     verify_output()

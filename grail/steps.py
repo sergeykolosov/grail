@@ -2,6 +2,8 @@ import traceback
 import sys
 from unittest import TestCase
 
+import six
+
 import grail.state as state
 import grail.settings as settings
 from grail.step_info import StepInfo, StepResults
@@ -42,9 +44,9 @@ class _RedirectOut(object):
     def get_captured_output(self):
         def convert(line):
             final_line = state.indentation + line
-            if isinstance(final_line, unicode):
+            if isinstance(final_line, six.text_type):
                 return final_line
-            return unicode(final_line, errors='replace')
+            return six.text_type(final_line, errors='replace')
 
         return u''.join(map(convert, self.step_messages))
 
@@ -70,7 +72,7 @@ def _validate_step_info(step_info):
         raise GrailValidationException(u'Step logic disabling is not applicable for step groups')
     if not step_info.step_group and state.step_execution_started:
         raise GrailValidationException(u'Step is called from another step (without group): %s' %
-                                       step_info.function.func_name)
+                                       step_info.function.__name__)
 
 
 def _execute(step_info):
@@ -93,7 +95,7 @@ def _execute(step_info):
         if console_message:
             print_message += u'\n'
             print_message += console_message.rstrip()
-        print print_message
+        print(print_message)
 
     try:
         if state.pending_step or state.step_first_error is not None:

@@ -23,13 +23,13 @@ def step_with_description():
 
 @step
 def step_with_params(some_string=None):
-    print some_string
+    print(some_string)
 
 
 @step(description='Some info \'{0}\' {kw_str}', format_description=True)
 def step_with_format_params(some_string, kw_str):
-    print some_string
-    print kw_str
+    print(some_string)
+    print(kw_str)
 
 
 @step(step_group=True)
@@ -40,12 +40,12 @@ def step_group():
 
 @step
 def step_with_args(*args):
-    print args
+    print(args)
 
 
 @step
 def step_with_kwargs(**kwargs):
-    print kwargs
+    print(kwargs)
 
 
 class TestExport(TestCase):

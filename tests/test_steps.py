@@ -12,11 +12,11 @@ from tests.utils import validate_method_output
 class TestStepDisabling(TestCase):
     @step
     def disabled_step(self):
-        print 'Some data'
+        print('Some data')
 
     @step(log_output=True)
     def disabled_step_params(self):
-        print 'Some data after params'
+        print('Some data after params')
 
     def setUp(self):
         grail.settings.disable_steps = True

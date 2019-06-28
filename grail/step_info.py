@@ -1,6 +1,8 @@
 import inspect
 import time
 
+import six
+
 import grail.settings as settings
 
 
@@ -14,9 +16,9 @@ class StepResults(object):
 
 def unicode_replace(object_):
     try:
-        return unicode(object_)
+        return six.text_type(object_)
     except UnicodeDecodeError:
-        return unicode(str(object_), errors='replace')
+        return six.text_type(str(object_), errors='replace')
 
 
 class StepInfo(object):
@@ -41,7 +43,7 @@ class StepInfo(object):
         return args, self.kwargs
 
     def _get_name_based_description(self):
-        return u' '.join(self.function.func_name.split('_'))
+        return u' '.join(self.function.__name__.split('_'))
 
     def _get_arguments_string(self):
         args, kwargs = self._get_clean_params()
@@ -50,7 +52,7 @@ class StepInfo(object):
             kwargs = {k: v for k, v in kwargs.items() if v}
         if len(args) == 0 and len(kwargs) == 0:
             return ''
-        args = map(unicode_replace, args)
+        args = list(map(unicode_replace, args))
         kw_arguments = [u'{0}={1}'.format(k, v) for k, v in kwargs.items()]
         return u' (' + u', '.join(args + kw_arguments) + u')'
 

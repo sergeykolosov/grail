@@ -9,12 +9,12 @@ class MyNotFinishedTest(BaseTest):
 
     @step
     def first_implemented_step(self):
-        print 'Some implemented actions'
+        print('Some implemented actions')
 
     @step(pending=True)
     def second_pending_step(self):
-        print 'This is not final implementation'
+        print('This is not final implementation')
 
     @step
     def some_third_step(self):
-        print 'This step is implemented but will be Ignored and you will not see this message'
+        print('This step is implemented but will be Ignored and you will not see this message')

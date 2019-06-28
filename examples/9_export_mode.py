@@ -17,8 +17,8 @@ class MyTestForExport(BaseTest):
 
     @step
     def one_more_step(self, step_input):
-        print 'You will not see next line print'
-        print step_input
+        print('You will not see next line print')
+        print(step_input)
 
     @step(description='Some step that will be implemented')
     def pending_step(self):

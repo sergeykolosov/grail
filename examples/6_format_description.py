@@ -7,6 +7,6 @@ class MyVeryFormattedTest(BaseTest):
 
     @step(description='Some info: {0}, another info: {kwarg_to_format}', format_description=True)
     def some_tricky_formatting(self, arg_to_format, kwarg_to_format, skip_this):
-        print arg_to_format
-        print kwarg_to_format
-        print skip_this
+        print(arg_to_format)
+        print(kwarg_to_format)
+        print(skip_this)

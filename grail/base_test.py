@@ -2,6 +2,8 @@ import traceback
 from functools import wraps
 from unittest import TestCase
 
+import six
+
 import grail.state as state
 import grail.settings as settings
 
@@ -21,9 +23,9 @@ def handle_steps(func):
 
             if step_first_error is not None:
                 for line in step_stack:
-                    print '  File "%s", line %i, in %s\n    %s' % line
-                print ''.join(traceback.format_tb(step_exception_traceback))
-                raise step_first_error, None, step_exception_traceback
+                    print('  File "%s", line %i, in %s\n    %s' % line)
+                print(''.join(traceback.format_tb(step_exception_traceback)))
+                six.reraise(step_first_error, None, step_exception_traceback)
             if pending_step and not settings.export_mode:
                 raise Exception('Test is failed as there are pending steps')
             return result
