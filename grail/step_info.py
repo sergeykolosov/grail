@@ -37,7 +37,10 @@ class StepInfo(object):
     def _get_clean_params(self):
         args = self.args
         if args:
-            args_def = inspect.getargspec(self.function)[0]
+            if six.PY2:
+                args_def = inspect.getargspec(self.function)[0]
+            else:
+                args_def = inspect.getfullargspec(self.function)[0]
             if args_def and args_def[0] == u'self':
                 args = args[1:]
         return args, self.kwargs
